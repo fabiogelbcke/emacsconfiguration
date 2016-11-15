@@ -1,4 +1,5 @@
 
+
 ;; added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
@@ -37,22 +38,26 @@
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 
 (set-face-attribute 'web-mode-html-tag-face nil :foreground "Orange")
+(setq web-mode-markup-indent-offset 2)
 
 (ac-config-default)
 
 (global-linum-mode 1)
 (set-language-environment "UTF-8")
 
-(add-hook 'c-mode-hook (lambda ()
-			 (setq-default font-lock-global-modes nil)
+(require 'cc-mode)
+
+(setq-default c-basic-offset 4)
+(setq-default c-default-style "linux")
+(setq-default tab-stop-list '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60
+				64 68 72 76 80 84 88 92 96 100 104 108 112 116 120))
+
+(add-hook 'c-mode-common-hook '(lambda ()
+;;			 (setq-default font-lock-global-modes nil);;
 			 (setq-default line-number-mode nil)
 			 (setq-default tab-width 4)
 			 (setq-default indent-tabs-mode t)
 			 (setq-default c-backspace-function 'backward-delete-char)
-			 (setq-default c-basic-offset 4)
-			 (setq-default c-default-style "linux")
-			 (setq-default tab-stop-list '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60
-							 64 68 72 76 80 84 88 92 96 100 104 108 112 116 120))
 			 ))
 
 (load-theme 'darkokai t)
